@@ -1,4 +1,4 @@
-def drawMap(gameMap:list, game_time:int, level:int, score:int) -> list:
+def drawMap(gameMap:list, gameTime:int, level:int, score:int, mainLoop:str=False) -> list:
     print("\033[H\033[J", end="")  
 
     BLUE = "\033[34m"
@@ -8,16 +8,16 @@ def drawMap(gameMap:list, game_time:int, level:int, score:int) -> list:
     RESET = "\033[0m"
 
     COLORS = {"b": BLUE, "g": GREEN, "r": RED, "y": YELLOW}
-    num_columns = len(gameMap)
-    num_rows = len(gameMap[0])
-    map_width = num_columns * 2 + 3 
+    numColumns = len(gameMap)
+    numRows = len(gameMap[0])
+    mapWidth = numColumns * 2 + 3 
 
-    output_lines = []
-    output_lines.append("-" * map_width)
+    outputLines = []
+    outputLines.append("-" * mapWidth)
 
-    for row in range(num_rows):
+    for row in range(numRows):
         line = "| "
-        for column in range(num_columns):
+        for column in range(numColumns):
             tile = gameMap[row][column].replace("a ", "")
 
             if tile == "*":
@@ -36,48 +36,49 @@ def drawMap(gameMap:list, game_time:int, level:int, score:int) -> list:
                     color = COLORS.get(parts[0], RESET)
                     line += f"{color}#{RESET} "
 
-                gameMap[row][column] = f"{parts[1]} {parts[0]}"
+                if mainLoop:
+                    gameMap[row][column] = f"{parts[1]} {parts[0]}"
 
             else:
                 line += "? "
 
         line += "|"
-        output_lines.append(line)
+        outputLines.append(line)
 
-    output_lines.append("-" * map_width)
+    outputLines.append("-" * mapWidth)
 
-    total_lines = len(output_lines)
-    info_output_lines = [""] * total_lines
+    totalLines = len(outputLines)
+    infoOutputLines = [""] * totalLines
 
-    info_output_lines[1] = f" Level: {level}"
-    info_output_lines[2] = f" Score: {score}"
-    info_output_lines[3] = f" Time: {game_time}s"
+    infoOutputLines[1] = f" Level: {level}"
+    infoOutputLines[2] = f" Score: {score}"
+    infoOutputLines[3] = f" Time: {gameTime}s"
 
-    for i in range(total_lines):
-        map_line = output_lines[i]
-        info_line = info_output_lines[i]
-        print(map_line.ljust(map_width) + "   " + info_line)
+    for i in range(totalLines):
+        mapLine = outputLines[i]
+        infoLine = infoOutputLines[i]
+        print(mapLine.ljust(mapWidth) + "   " + infoLine)
 
     return gameMap
 
-if __name__ == "__main__":
-    import time as t
+# if __name__ == "__main__":
+#     import time as t
 
-    HEIGHT = 10
-    WIDTH = 10
-    gameMap = [
-        ["*", "b", "b", "*", "*"],
-        ["*", "v b", "v b", "*", "*"],
-        ["*", "*", "*", "*", "*"],
-        ["*", "a b", "a r", "*", "*"],
-        ["*", "*", "*", "*", "*"],
-    ]
+#     HEIGHT = 10
+#     WIDTH = 10
+#     gameMap = [
+#         ["*", "b", "b", "*", "*"],
+#         ["*", "v b", "v b", "*", "*"],
+#         ["*", "*", "*", "*", "*"],
+#         ["*", "a b", "a r", "*", "*"],
+#         ["*", "*", "*", "*", "*"],
+#     ]
 
-    level = 1
-    score = 0
-    startTime = t.time()
+#     level = 1
+#     score = 0
+#     startTime = t.time()
 
-    for _ in range(10):
-        gameTime = int(t.time() - startTime)
-        drawMap(gameMap, gameTime, level, score)
-        t.sleep(1)
+#     for i in range(10):
+#         gameTime = int(t.time() - startTime)
+#         drawMap(gameMap, gameTime, level, score)
+#         t.sleep(1)

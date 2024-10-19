@@ -7,5 +7,5 @@ def createMap(height:int, width:int) -> list:
 
     return(gameMap)
 
-if __name__ == "__main__": 
-    print(createMap(5, 5))
+# if __name__ == "__main__": 
+#     print(createMap(5, 5))

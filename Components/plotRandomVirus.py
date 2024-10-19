@@ -10,7 +10,7 @@ def plotRandomVirus(gameMap:list, level:int) -> list:
 
     for n in range(amount): 
         while True: 
-            x = r.randint(2, len(gameMap)-1)
+            x = r.randint(3, len(gameMap)-1)
             y = r.randint(0, len(gameMap[0])-1)
 
             if gameMap[x][y] == "*": 
@@ -19,11 +19,11 @@ def plotRandomVirus(gameMap:list, level:int) -> list:
 
     return gameMap
 
-if __name__ == "__main__": 
-    from createMap import createMap
-    from drawMap import drawMap
+# if __name__ == "__main__": 
+#     from createMap import createMap
+#     from drawMap import drawMap
 
-    gameMap = createMap(5, 5)
-    gameMap = plotRandomVirus(gameMap, 3)
-    drawMap(gameMap, 1, 1, 1)
+#     gameMap = createMap(5, 5)
+#     gameMap = plotRandomVirus(gameMap, 3)
+#     drawMap(gameMap, 1, 1, 1)
 
