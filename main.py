@@ -6,22 +6,23 @@ from Components.checkForActive import checkForActive
 from Components.dropBlock import dropBlock
 from Components.moveBlock import moveBlock, moveDown, rotateBlock
 from Components.checkFourInRow import checkFourInRow
+from Components.isLevelCleared import isLevelCleared
 
 import time as t 
 from pynput import keyboard
 import os
 
 # TODO:
-# check four in a row 
-# add a new block called f {color} -> falling blocks that cant be moved 
+# add a new block called f {color} -> falling blocks that can't be moved 
 # make other blocks fall if a block breaks and its not attached to a virus
+# change level 
+# fix rotate 
 
 # TODO later: 
-# code the start page into the code
 # add death screen 
-# fix rotate 
+# implement start screen
+# make the in game ui better (it bugs out sometimes)
 # clean code / add comments 
-
 
 # * -> empty tile
 # b -> blue 
@@ -60,7 +61,7 @@ def clearConsole():
 def main(): 
     global gameMap, fastDrop, rotate, gameTime, level, score
 
-    # start screen 
+    # start screen here 
 
     # vars 
     gameSpeed = 1
@@ -88,4 +89,14 @@ def main():
         gameMap, score = checkFourInRow(gameMap, score)
         t.sleep(gameSpeed)
 
+        if isLevelCleared: 
+            level += 1 
+
+            gameSpeed -= level * 0.1 
+
+            if gameSpeed < 0: 
+                gameSpeed = 0 
+
+            gameMap = plotRandomVirus(createMap(HEIGHT, WIDTH), level)
+ 
 main()
