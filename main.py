@@ -89,7 +89,7 @@ def main():
         gameMap, score = checkFourInRow(gameMap, score)
         t.sleep(gameSpeed)
 
-        if isLevelCleared: 
+        if isLevelCleared == True: 
             level += 1 
 
             gameSpeed -= level * 0.1 

@@ -5,3 +5,15 @@ def isLevelCleared(gameMap:list) -> bool:
                 return False 
             
     return True
+
+
+if __name__ == "__main__": 
+    gameMap = [
+        ["*", "b", "b", "*", "*"],
+        ["*", "b", "b", "*", "*"],
+        ["*", "*", "*", "*", "*"],
+        ["*", "b", "*", "*", "*"],
+        ["*", "*", "*", "*", "*"],
+    ]
+
+    print(isLevelCleared(gameMap))
