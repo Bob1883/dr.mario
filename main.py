@@ -4,7 +4,7 @@ from Components.plotRandomVirus import plotRandomVirus
 from Components.spawnBlock import spawnBlock
 from Components.checkForActive import checkForActive
 from Components.dropBlock import dropBlock
-from Components.moveBlock import moveBlock, moveDown
+from Components.moveBlock import moveBlock, moveDown, rotateBlock
 from Components.checkFourInRow import checkFourInRow
 from Components.isLevelCleared import isLevelCleared
 
