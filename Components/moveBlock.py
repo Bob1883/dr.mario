@@ -53,7 +53,6 @@ def rotateBlock(gameMap: list) -> list:
     height = len(gameMap)
     width = len(gameMap[0])
 
-    # Find active blocks
     active_blocks = []
     for row in range(height):
         for col in range(width):
@@ -61,56 +60,49 @@ def rotateBlock(gameMap: list) -> list:
                 active_blocks.append((row, col, gameMap[row][col]))
 
     if len(active_blocks) != 2:
-        # Cannot rotate without exactly two active blocks
         return gameMap
 
-    # Unpack active blocks
-    (row1, col1, val1), (row2, col2, val2) = active_blocks
+    (row1, col1, block1), (row2, col2, block2) = active_blocks
 
-    # Calculate the difference in positions
-    dx = col2 - col1
-    dy = row2 - row1
+    if row1 == row2:
+        base_row = row1
+        base_col = min(col1, col2)  
 
-    # Determine current orientation
-    if dx == 1 and dy == 0:
-        state = 0  # Horizontal, block2 is right of block1
-    elif dx == 0 and dy == 1:
-        state = 1  # Vertical, block2 is below block1
-    elif dx == -1 and dy == 0:
-        state = 2  # Horizontal, block2 is left of block1
-    elif dx == 0 and dy == -1:
-        state = 3  # Vertical, block2 is above block1
+        new_row = base_row + 1
+        new_col = base_col
+
+        if new_row < height and gameMap[new_row][new_col] == "*":
+            gameMap[row1][col1] = "*"
+            gameMap[row1][col2] = "*"
+
+            left_block = block1 if col1 == base_col else block2
+            right_block = block2 if col1 == base_col else block1
+
+            gameMap[base_row][base_col] = left_block
+            gameMap[new_row][new_col] = right_block
     else:
-        # Blocks are not adjacent; cannot rotate
-        return gameMap
+        base_row = max(row1, row2)  
+        base_col = col1 if row1 == base_row else col2
 
-    # Calculate next rotation state
-    next_state = (state + 1) % 4
+        new_row = base_row
+        new_col = base_col + 1
 
-    # Compute new position for block2 based on rotation
-    if next_state == 0:
-        new_row2 = row1
-        new_col2 = col1 + 1
-    elif next_state == 1:
-        new_row2 = row1 + 1
-        new_col2 = col1
-    elif next_state == 2:
-        new_row2 = row1
-        new_col2 = col1 - 1
-    elif next_state == 3:
-        new_row2 = row1 - 1
-        new_col2 = col1
-    else:
-        # Invalid state; should not happen
-        return gameMap
+        if new_col < width and gameMap[new_row][new_col] == "*":
+            gameMap[row1][col1] = "*"
+            gameMap[row2][col2] = "*"
 
-    # Check if new position is within bounds and empty
-    if 0 <= new_row2 < height and 0 <= new_col2 < width and gameMap[new_row2][new_col2] == "*":
-        # Update game map with new positions
-        gameMap[row2][col2] = "*"
-        gameMap[new_row2][new_col2] = val2
-    else:
-        # Rotation blocked; do nothing
-        pass
+            bottom_block = block1 if row1 == base_row else block2
+            top_block = block2 if row1 == base_row else block1
+
+            gameMap[base_row][base_col] = bottom_block
+            gameMap[new_row][new_col] = top_block
+        else:
+            new_col = base_col - 1
+            if new_col >= 0 and gameMap[new_row][new_col] == "*":
+                gameMap[row1][col1] = "*"
+                gameMap[row2][col2] = "*"
+
+                gameMap[base_row][base_col] = bottom_block
+                gameMap[new_row][new_col] = top_block
 
     return gameMap

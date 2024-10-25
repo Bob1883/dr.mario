@@ -1,7 +1,7 @@
 import random as r 
 
 def plotRandomVirus(gameMap:list, level:int) -> list: 
-    amount = level * r.randint(1, 3)
+    amount = level * r.randint(1, 2)
 
     if amount > ((len(gameMap)-2)*len(gameMap[0]))/1.1: 
         amount = int((len(gameMap)*len(gameMap[0]))/1.1)
@@ -10,7 +10,7 @@ def plotRandomVirus(gameMap:list, level:int) -> list:
 
     for n in range(amount): 
         while True: 
-            x = r.randint(3, len(gameMap)-1)
+            x = r.randint(4, len(gameMap)-1)
             y = r.randint(0, len(gameMap[0])-1)
 
             if gameMap[x][y] == "*": 

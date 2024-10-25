@@ -85,11 +85,12 @@ def main():
             gameMap = dropBlock(gameMap)
 
         drawMap(gameMap, gameTime, level, score, mainLoop=True)
+        # print(gameMap)
 
         gameMap, score = checkFourInRow(gameMap, score)
         t.sleep(gameSpeed)
 
-        if isLevelCleared == True: 
+        if isLevelCleared(gameMap) == True: 
             level += 1 
 
             gameSpeed -= level * 0.1 

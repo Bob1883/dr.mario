@@ -59,35 +59,35 @@ def checkFourInRow(gameMap:list, score:int) -> tuple:
     return gameMap, score
 
 # if __name__ == "__main__": 
-    # score = 0 
+#     score = 0 
 
-    # gameMap = [
-    #     ["*", "b", "*", "*", "*"],
-    #     ["b", "b", "*", "b", "b"],
-    #     ["*", "b", "*", "*", "*"],
-    #     ["*", "b", "*", "*", "*"],
-    #     ["*", "*", "*", "*", "*"]
-    # ]
+#     gameMap = [
+#         ["*", "b", "*", "*", "*"],
+#         ["b", "b", "*", "b", "b"],
+#         ["*", "b", "*", "*", "*"],
+#         ["*", "b", "*", "*", "*"],
+#         ["*", "*", "*", "*", "*"]
+#     ]
 
-    # toRemove = []
+#     toRemove = []
 
-    # inverse = inverseMap(gameMap)
-    # vertical = checkToRemove(inverse) 
-    # horizontal = checkToRemove(gameMap)
+#     inverse = inverseMap(gameMap)
+#     vertical = checkToRemove(inverse) 
+#     horizontal = checkToRemove(gameMap)
 
-    # for n in range(len(vertical)): 
-    #     vertical[n] = [vertical[n][1], vertical[n][0]]
+#     for n in range(len(vertical)): 
+#         vertical[n] = [vertical[n][1], vertical[n][0]]
 
-    # toRemove.extend(vertical)
-    # toRemove.extend(horizontal)
+#     toRemove.extend(vertical)
+#     toRemove.extend(horizontal)
 
-    # toRemove = removeDups(toRemove)
+#     toRemove = removeDups(toRemove)
 
-    # for cords in toRemove: 
-    #     gameMap[cords[0]][cords[1]] = "*"
-    #     score += 1 
+#     for cords in toRemove: 
+#         gameMap[cords[0]][cords[1]] = "*"
+#         score += 1 
 
-    # print(gameMap)
-    # print(score)
+#     print(gameMap)
+#     print(score)
 
-    # #remove does 
+#     #remove does 

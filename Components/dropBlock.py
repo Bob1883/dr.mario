@@ -13,7 +13,7 @@ def dropBlock(gameMap:list) -> list:
     canMove = True
     for row, col in activeBlocks:
         nextRow = row + 1
-        if nextRow >= numRows or gameMap[nextRow][col] != '*':
+        if nextRow >= numRows or gameMap[nextRow][col] != '*' and "a" not in gameMap[nextRow][col]:
             canMove = False
             break
 
